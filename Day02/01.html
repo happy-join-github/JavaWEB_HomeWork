@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作业1</title>
+    <style>
+        table {
+          width: 80%;
+          border-collapse: collapse;
+          margin: 0 auto;
+        }
+        th,td {
+          border: 1px solid #000;
+          padding: 10px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--3 将模型数据和视图进行绑定-->
+    <div id="app">
+        <!--扩展需求：在下方表格中展示品牌信息-->
+        <table id="brandTable">
+            <tr>
+                <th>序号</th>
+                <th>品牌名称</th>
+                <th>企业名称</th>
+                <th>排序</th>
+                <th>品牌介绍</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            <tr align="center" v-for="(item,index) in brands" :key="index">
+                <td>{{index + 1 }}</td>
+                <td>{{item.companyName}}</td>
+                <td>{{item.brandName}}</td>
+                <td>{{item.ordered}}</td>
+                <td>{{item.description}}</td>
+                <td> 
+                    <span style="color: green;" v-if="item.status">启用</span>
+                    <span style="color: red;"v-else>禁用</span>
+                </td>
+                <td><a href="#">修改</a> <a href="#">删除</a></td>
+            </tr>
+        </table>
+    </div>
+
+    <script type="module">
+      import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+      
+      createApp({
+        data() {
+          return {
+            brands: [{
+              id: 10,
+              brandName: "三只松鼠",
+              companyName: "三只松鼠",
+              ordered: "100",
+              description:"三只松鼠，好吃不上火",
+              status: 1
+            }, {
+              id: 20,
+              brandName: "优衣库",
+              companyName: "优衣库",
+              ordered: "10",
+              description:"优衣库，服适人生",
+              status: 0
+            }, {
+              id: 30,
+              brandName: "小米",
+              companyName: "小米科技有限公司",
+              ordered: "1000",
+              description:"为发烧而生",
+              status: 0
+            }, {
+              id: 40,
+              brandName: "华为",
+              companyName: "华为科技有限公司",
+              ordered: "100",
+              description:"没有伤痕累累，哪来皮糙肉厚，英雄自古多磨难",
+              status: 1
+            }]
+          }
+        }
+      }).mount('#app')
+    </script>
+</body>
+</html>
